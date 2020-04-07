@@ -19,6 +19,7 @@ function print_alert(){
 }
 
 function set_alert($type = "message", $content = ""){
+    //printing various alert type
     switch($type){
         case "message":
             $_SESSION['message']=$content;
