@@ -46,7 +46,7 @@ if ($errorCount > 0) {
            
             $subject = "Password Reset";
             $message = "A password reset hsas been initiated from your account. If you did not initiate this reset, 
-            please ignore this message, otherwise, visit: localhost/SNH/reset.php?token=" . $token;
+            please ignore this message, otherwise, visit: localhost/SNH_P/reset.php?token=" . $token;
             $headers = "From: alphajeez@snh.org" . "\r\n" .
             "CC: prince@snh.org";
 
