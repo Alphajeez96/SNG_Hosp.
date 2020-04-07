@@ -1,4 +1,8 @@
 <?php   session_start();
+require_once('functions/alert.php');
+require_once('functions/redirect.php');
+require_once('functions/token.php');
+require_once('functions/user.php');
  
     //Data collection / validation
     $errorCount = 0;
@@ -47,32 +51,18 @@ if ($errorCount > 0) {
             $subject = "Password Reset";
             $message = "A password reset hsas been initiated from your account. If you did not initiate this reset, 
             please ignore this message, otherwise, visit: localhost/SNH_P/reset.php?token=" . $token;
-            $headers = "From: alphajeez@snh.org" . "\r\n" .
-            "CC: prince@snh.org";
 
             //save token in folder
             file_put_contents("db/tokens/". $email . ".json", json_encode(['token'=>$token]));
    
-    
-            
-           $try = mail($email,$subject,$message,$headers);
-           
-
-           if($try){
-               //display a success message
-               $_SESSION['message'] = "Password Reset has been Sent to:" . " " . $email;
-               header("location: login.php");
-           } else {
-               //display error message
-               $_SESSION['error'] = "Something went wrong! password reset not sent to:" . " " . $email;
-               header("location: forgot.php");
-           }
+            //function to send mail
+         send_mail($subject, $message, $email); 
 
             die();
         }
 
     }
-    $_SESSION['error'] = "Email not Found ERR:" . " " . $email;
-    header("location: forgot.php");
+    set_alert("error", "Email not Found ERR:" . " " . $email);
+    redirect_to("forgot.php");
 }
 ?>
