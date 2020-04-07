@@ -34,7 +34,7 @@ function find_user($email = ""){
         die();
     }
 
-    $allUsers = scandir("db/users/"); //return @array (2 filled)
+    $allUsers = scandir("db/users/"); 
     $countAllUsers = count($allUsers);
 
     for ($counter = 0; $counter < $countAllUsers ; $counter++) {
