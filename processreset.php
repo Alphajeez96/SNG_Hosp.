@@ -1,5 +1,9 @@
 <?php  session_start();
 
+    require_once('functions/user.php');
+    require_once('functions/alert.php');
+    require_once('functions/redirect.php');
+
 //Data collection / validation
 $errorCount = 0;
 
