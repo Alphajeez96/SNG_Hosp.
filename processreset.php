@@ -24,8 +24,11 @@ if ($errorCount > 0) {
         $currentTokenFile = $allUserTokens[$counter];
 
         if($currentTokenFile == $email . ".json"){
-            echo 'working';
-             die();
+            
+
+            $tokenContent = file_get_contents("db/tokens" . $currentTokenFile);
+
+
         }
 
     }
