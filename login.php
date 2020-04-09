@@ -12,12 +12,12 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
         <h3>Login</h3>
     </div>
     <div class="row col-6">
+        
+        <form method="POST" action="processlogin.php">
+    
         <p>
         <?php  print_alert(); ?>
         </p>
-        <form method="POST" action="processlogin.php">
-    
-                
             <p>
                 <label>Email</label><br />
                 <input

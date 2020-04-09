@@ -67,7 +67,7 @@ if ($errorCount > 0) {
     //Save in the database(file system)
 
     save_user($userObject);
-    $_SESSION['message'] = "Registration Succesful, you can now login" . '' . $first_name;
+    $_SESSION['message'] = "Registration Succesful, you can now login" . " " . $first_name;
     header("location: login.php");
 }
 

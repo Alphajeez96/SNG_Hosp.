@@ -7,7 +7,7 @@ require_once('functions/user.php');
 
     $errorCount = 0;    
 
-    //Data collection / Validation4
+    //Data collection // Validation
 
     $email = $_POST['email'] != '' ?  $_POST['email'] : $errorCount++;
     $password = $_POST['password'] != '' ?  $_POST['password'] : $errorCount++;
@@ -63,7 +63,7 @@ if ($errorCount > 0) {
             
         }
     }
-    set_alert('error',"Invalid Email or Password");
+    set_alert("error","Invalid Email or Password");
     redirect_to("login.php");
     die();
 ?>

@@ -1,4 +1,5 @@
-<?php include_once('lib/header.php');
+<?php
+ include_once('lib/test.php');
  require_once('functions/alert.php');
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
     // redirect to dashboard
@@ -7,7 +8,106 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 // include_once('lib/header.php');
 
 ?>
-<div class="container">
+<div class='body'>
+
+
+<div class="signup-wrapper">
+      <div class="img">
+      <a href='index.php'>  <img class="imgs" src="./img/logo.png"> </a>
+      </div>
+      <form method="POST" action="processregister.php">
+
+      <p>
+            <?php  print_alert(); ?>
+        </p>
+
+        <div class="login-containe" id="del">
+            <h2>Create an Account <br><span>Welcome to the future of Knowledge & Acquaintance </span></h2>
+            <div class="for-group">
+              <p> <label for="first name">Full Name</label></p>
+                <input
+            type="text"
+            id="first name"
+            name="Full name"
+            placeholder="Full name"
+            title=""
+            required
+          />
+          
+        </div>
+
+        <div class="for-group">
+           <p> <label for="email">Email Adress</label></p>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            title=""
+            id="email"
+            required
+          />
+         
+        </div>
+
+        <div class="for3-group">
+            <p> <label>Phone Number</label></p>
+           <input
+             type="text"
+             name="phonenumber"
+             placeholder="Phone Number"
+             title=""
+             required
+           />
+
+           <p> <label> Password </label></p>
+           <i class="fa fa-facebook icon"></i> 
+           <input
+             type="password"
+             name="email"
+             placeholder="Password"
+             title=""
+             required
+           />
+
+           <p> <label> Referrer Phone or Promo Code (Optional)</label></p>
+           <input
+             type="text"
+             name="email"
+             placeholder=" Referrer Phone or Code"
+             title=""
+             required
+           />
+          
+           <p> <label>How Did You Hear About Us? (Optional) </label></p>
+           <div class="custom-select">
+            <i class="fa fa-user icon"></i>
+            <img class="imgi" src="./img/icon.png">
+            <i class="fa fa-user icon"></i> 
+           <select>
+           
+               <option> Click To Select </option>
+               <option>Facebook </option>
+               <option>Twitter </option>
+               <option>Instagram </option>
+               <option>Friend/Family/Coworker Referal </option>
+               <option>Google Search </option>
+               <option>Google Playstore </option>
+               <option>Online Blog </option>
+               <option>Local Newspaper </option>
+               <option>At an event </option>
+               <option> Other </option>
+           </select>
+        </div>         
+       <button class='buttons' type="submit">CREATE ACCOUNT</button>
+        
+            </div>
+        </div>
+        <p class="p"><a href="#"> Already have an account? Log In</a></p>
+    </div>
+
+
+
+<!-- <div class="container">
     <div class="row col-6">
         <h3>Register</h3>
     </div>
@@ -130,4 +230,5 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
     </div>
 
 </div>
+</div> -->
 <?php include_once('lib/footer.php'); ?>
