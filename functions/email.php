@@ -9,7 +9,7 @@ function send_mail(
     $email = ""
     ){
     
-    $headers = "From: alphajeez@snh.org" . "\r\n" .
+    $headers = "From: admin@snh.org" . "\r\n" .
     "CC: prince@snh.org";
 
     $try = mail($email,$subject,$message,$headers);

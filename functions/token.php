@@ -3,9 +3,11 @@
 function generate_token(){
     $token = ""; 
 
-    $alphabets = ['a','b','c','d','e','f','g','h','A','B','C','D','E','F','G','H'];
+    $alphabets = ['a','b','d','e','f','g','h' ,'i','j','k','l','m',"n",
+    'A','B','C', 'D','E','E', 'F','G','H', 'I','J', 'K','L','M', 'N','O',
+    'P','Q','R', 'S','T','U','V','W', 'o','p','.', 'q','r','s', 't'];
 
-    for($i = 0 ; $i < 26 ; $i++){
+    for($i = 0 ; $i < 30 ; $i++){
 
       $index = mt_rand(0,count($alphabets)-1);
       $token .= $alphabets[$index];
@@ -16,7 +18,7 @@ function generate_token(){
 
 function find_token($email = ''){
     
-    $allUserTokens = scandir("db/tokens/"); //return @array (2 filled)
+    $allUserTokens = scandir("db/tokens/"); 
     $countAllUserTokens = count($allUserTokens);
 
     for ($counter = 0; $counter < $countAllUserTokens ; $counter++) {
@@ -25,10 +27,11 @@ function find_token($email = ''){
 
         if($currentTokenFile == $email . ".json"){
            
+             //save token in folder
            $tokenContent = file_get_contents("db/tokens/".$currentTokenFile);
 
            $tokenObject = json_decode($tokenContent);
-        //    $tokenFromDB = $tokenObject->token;
+       
         return $tokenObject;
 
         }
@@ -36,5 +39,6 @@ function find_token($email = ''){
 
     return false;
 }
+
 
 ?>

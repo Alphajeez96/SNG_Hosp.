@@ -34,9 +34,7 @@ if ($errorCount > 0) {
             
              */
             $token= '';
-            $alphabets = ['a','b','d','e','f','g','h' ,'i','j','k','l','m',"n",
-             'A','B','C', 'D','E','E', 'F','G','H', 'I','J', 'K','L','M', 'N','O',
-             'P','Q','R', 'S','T','U','V','W', 'o','p','.', 'q','r','s', 't'];
+            
 
             for($i=0; $i < 22 ; $i++ ){
                 $index = mt_rand(0, count($alphabets));
