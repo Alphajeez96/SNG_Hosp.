@@ -1,4 +1,10 @@
 <?php  session_start();
+
+require_once('functions/alert.php');
+require_once('functions/redirect.php');
+require_once('functions/token.php');
+require_once('functions/user.php');
+
     $errorCount = 0;    
 
     //Data collection / Validation4
@@ -11,53 +17,55 @@
     //check for error before submission
 if ($errorCount > 0) {
     //display accurate message
-    $_SESSION['error'] = 'you have' . ' '. $errorCount . ' '.  ' errors in your form submission';
-    header("location: login.php");
+    $session_error = "You have " . $errorCount . " error";
+    
+    if($errorCount > 1) {        
+        $session_error .= "s";
+    }
+
+    $session_error .=   " in your form submission";
+    
+    set_alert('error',$session_error);
+      
+    redirect_to("login.php");
 } else {
-   //count all Users
-   $allUsers = scandir("db/users/");
-  
-   $countAllUsers = count($allUsers);
-  
-
-
+   
      //check if user already exists
-     for($counter = 0; $counter < $countAllUsers; $counter++ ){
-        $currentUser = $allUsers[$counter];
+     $currentUser = find_user($email);
 
-        //getting and comparing email input
-        if($currentUser == $email . ".json"){
-           $userString= file_get_contents("db/users/". $currentUser);
-           $userObject = json_decode($userString);
-
-           //validating user password
-           $passwordFromDB = $userObject->password;
-
-           $passwordFromUser = password_verify($password, $passwordFromDB);
+        //getting and comparing email input & validating user password
+        if($currentUser){
+              $userString = file_get_contents("db/users/".$currentUser->email . ".json");
+              $userObject = json_decode($userString);
+              $passwordFromDB = $userObject->password;
+  
+              $passwrodFromUser = password_verify($password, $passwordFromDB);
+              
 
            if($passwordFromDB == $passwordFromUser){
                //check if user is logged in
 
-               $_SESSION['loggedin'] = $userObject->id;
-               $_SESSION['fullname'] = $userObject->first_name . " " .  $userObject->last_name;
-               $_SESSION['role'] = $userObject->designation;
-
+               $_SESSION['loggedIn'] = $userObject->id; 
+                $_SESSION['email'] = $userObject->email;
+                $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
+                $_SESSION['role'] = $userObject->designation;
+                
                //check user role and send to respective db
                
             //    if( $userObject->designation == 'Patient'){
             //     header("location: patient.php");
             //    }
 
-                header("location: dashboard.php");
-                die();
+            redirect_to("dashboard.php");
+            die();
            }
           
             
         }
     }
-    $_SESSION['error'] = "Invalid Email or Password" ;
-            header("location: login.php");  
-}
+    set_alert('error',"Invalid Email or Password");
+    redirect_to("login.php");
+    die();
 ?>
 
 <?php include_once('lib/footer.php') ?>
