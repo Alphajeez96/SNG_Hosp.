@@ -1,12 +1,13 @@
 <?php session_start();
 require_once('functions/user.php');
+require_once('functions/redirect.php');
 
 //Data collection / validation
 $errorCount = 0;
 
-$first_name = $_POST['first_name'] != '' ?  $_POST['first_name'] : $errorCount++;
-$last_name = $_POST['last_name'] != '' ?  $_POST['last_name'] : $errorCount++;
-$email = $_POST['email'] != '' ?  $_POST['email'] : $errorCount++;
+$first_name = $_POST['first_name'] != ''   ?  $_POST['first_name']  : $errorCount++  ;
+$last_name = $_POST['last_name'] != ''   ? $_POST['last_name']  :   $errorCount++;
+$email = $_POST['email'] = !''  ? $_POST['email'] :  $errorCount++ ;
 $password = $_POST['password'] != '' ?  $_POST['password'] : $errorCount++;
 $gender = $_POST['gender'] != '' ?  $_POST['gender'] : $errorCount++;
 $designation = $_POST['designation'] != '' ?  $_POST['designation'] : $errorCount++;
@@ -23,6 +24,26 @@ $_SESSION ['department'] = $department;
 // $errorArray = [];
 
 //check for error before submission
+
+$first_name =($_POST["first_name"]);
+if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
+    header("Location: register.php");              
+    exit();
+}
+$last_name =($_POST["last_name"]);
+if (!preg_match("/^[a-zA-Z ]*$/",$last_name)) {
+    header("Location: register.php");              
+    exit();
+}
+
+$email = ($_POST["email"]);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: register.php");              
+    exit();
+}
+
+
+
 if ($errorCount > 0) {
     //display accurate message
     $session_error = "You have " . $errorCount . " error";
@@ -34,14 +55,17 @@ if ($errorCount > 0) {
     $session_error .=   " in your form submission";
     $_SESSION["error"] = $session_error ;
 
-    header("Location: register.php");
+   
+    redirect_to('register.php');
 } else {
 
-    //count all Users
-    // $allUsers = scandir("db/users/");
-    // $countAllUsers = count($allUsers);
+    $current_time = time(); // get  user current time
 
-    $newUserId = ($countAllUsers -1);
+    // count all Users
+    $allUsers = scandir("db/users/");
+    $countAllUsers = count($allUsers);
+
+    $newUserId = $countAllUsers ++;
     
     $userObject = [
         'id'=>$newUserId,
@@ -52,6 +76,7 @@ if ($errorCount > 0) {
         'gender' => $gender,
         'designation' => $designation,
         'department' => $department,
+        'register_at' => date("F d, Y h:i:s A", $current_time),
     ];
  
     //check if user already exists
