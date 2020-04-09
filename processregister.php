@@ -1,4 +1,5 @@
 <?php session_start();
+require_once('functions/user.php');
 
 //Data collection / validation
 $errorCount = 0;
@@ -19,21 +20,28 @@ $_SESSION ['gender'] = $gender;
 $_SESSION ['designation'] = $designation;
 $_SESSION ['department'] = $department;
 
-
-$errorArray = [];
+// $errorArray = [];
 
 //check for error before submission
 if ($errorCount > 0) {
     //display accurate message
-    $_SESSION['error'] = 'you have' . ' '. $errorCount . ' '.  ' errors in your form submission';
-    header("location: register.php");
+    $session_error = "You have " . $errorCount . " error";
+    
+    if($errorCount > 1) {        
+        $session_error .= "s";
+    }
+
+    $session_error .=   " in your form submission";
+    $_SESSION["error"] = $session_error ;
+
+    header("Location: register.php");
 } else {
 
     //count all Users
-    $allUsers = scandir("db/users/");
-    $countAllUsers = count($allUsers);
+    // $allUsers = scandir("db/users/");
+    // $countAllUsers = count($allUsers);
 
-    $newUserId = $countAllUsers -1;
+    $newUserId = ($countAllUsers -1);
     
     $userObject = [
         'id'=>$newUserId,
@@ -47,62 +55,20 @@ if ($errorCount > 0) {
     ];
  
     //check if user already exists
-    for($counter = 0; $counter < $countAllUsers; $counter++ ){
-        $currentUser = $allUsers[$counter];
+    $userExists = find_user($email);
 
-        if($currentUser == $email . ".json"){
-            $_SESSION['error'] = "Registration failed, User already exists" ;
-            header("location: register.php");  
-             die();
-        }
+       
+    if($userExists){
+        $_SESSION["error"] = "Registration Failed, User already exits ";
+        header("Location: register.php");
+        die();
     }
-
 
     //Save in the database(file system)
 
-    file_put_contents("db/users/". $email . ".json", json_encode($userObject)  );
+    save_user($userObject);
     $_SESSION['message'] = "Registration Succesful, you can now login" . '' . $first_name;
     header("location: login.php");
 }
-
-// print_r($errorArray);
-
-// if (last_name == '') {
-//     $errorArray = 'last name cannot be blank';
-// } 
-
-// print_r($errorArray);
-
-// if (email == '') {
-//     $errorArray = 'please provide an email';
-// } 
-
-// print_r($errorArray);
-
-// if (password == '') {
-//     $errorArray = 'please pick a password';
-// } 
-
-// print_r($errorArray);
-
-// if (gender == '') {
-//     $errorArray = 'please pick a gender';
-// } 
-
-// print_r($errorArray);
-
-// if (designation == '') {
-//     $errorArray = 'designation cannot be blank';
-// } 
-
-// print_r($errorArray);
-
-// if (department == '') {
-//     $errorArray = 'department cannot be blank';
-// } 
-
-// print_r($errorArray);
-
-
 
 ?>
