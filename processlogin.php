@@ -55,14 +55,16 @@ if($errorCount > 0){
                     redirect_to("dashboard.php");
                     die();
                 }
-                elseif ($userObject->designation = 'Medical Team (MT)') {
+                if ($userObject->designation = 'Medical Team (MT)') {
                     redirect_to("mtdashboard.php");
                     die();
                 }
-                else {
-                    redirect_to("admindashboard.php");
-                    die(); 
+                if ($userObject->designation = 'admin') {
+                    redirect_to("mtdashboard.php");
+                    die();
                 }
+               
+               
                 
             }
           
