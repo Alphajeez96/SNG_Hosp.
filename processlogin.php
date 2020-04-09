@@ -38,9 +38,13 @@ if($errorCount > 0){
             $userObject = json_decode($userString);
             $passwordFromDB = $userObject->password;
 
-            $passwrodFromUser = password_verify($password, $passwordFromDB);
+            $passwordFromUser = password_verify($password, $passwordFromDB);
+
+           
             
-            if($passwordFromDB == $passwrodFromUser){
+            if($passwordFromDB == $passwordFromUser)
+            {
+                
                 //redicrect to dashboard
                 $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;
@@ -49,24 +53,24 @@ if($errorCount > 0){
                 $_SESSION['register_at'] = $userObject->register_at;
                 $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
 
-        
-                if($userObject->designation = 'Patient')
-                {
-                    redirect_to("dashboard.php");
-                    die();
-                }
-                if ($userObject->designation = 'Medical Team (MT)') {
-                    redirect_to("mtdashboard.php");
-                    die();
-                }
-                if ($userObject->designation = 'admin') {
-                    redirect_to("mtdashboard.php");
-                    die();
-                }
-               
-               
+                // redirect_to("dashboard.php");
+            
                 
+                if($userObject->designation = 'Patient')
+                    {
+                        redirect_to("dashboard.php");
+                        
+                    }
+                    if ($userObject->designation = 'Medical Team (MT)') {
+                        redirect_to("mtdashboard.php");
+                        
+                    }
+                    if ($userObject->designation = 'admin') {
+                        redirect_to("admindashboard.php");
+                      
+                    }
             }
+            die();
           
         }        
         
