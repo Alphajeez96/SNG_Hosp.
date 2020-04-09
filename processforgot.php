@@ -14,8 +14,17 @@ require_once('functions/user.php');
     //check for error before submission
 if ($errorCount > 0) {
     //display accurate message
-    $_SESSION['error'] = 'you have' . ' '. $errorCount . ' '.  ' errors in your form submission';
-    header("location: forgot.php");
+    $session_error = "You have " . $errorCount . " error";
+    
+    if($errorCount > 1) {        
+        $session_error .= "s";
+    }
+
+    $session_error .=   " in your form submission";
+
+    set_alert('error', $session_error);
+
+    header("Location: forgot.php");
 } else {
 
     //count all Users
@@ -27,25 +36,10 @@ if ($errorCount > 0) {
         $currentUser = $allUsers[$counter];
 
         if($currentUser == $email . ".json"){
-            // send  email
-
-            /**
-             * Generating token starts Here
+            //Generating token starts Here
+            $token= generate_token();
             
-             */
-            $token= '';
-            
-
-            for($i=0; $i < 22 ; $i++ ){
-                $index = mt_rand(0, count($alphabets));
-                $token .= $alphabets[$index];
-            }
-
-            
-            /**
-             * code Ends here
-             */
-           
+           //Email sending starts here
             $subject = "Password Reset";
             $message = "A password reset hsas been initiated from your account. If you did not initiate this reset, 
             please ignore this message, otherwise, visit: localhost/SNH_P/reset.php?token=" . $token;
