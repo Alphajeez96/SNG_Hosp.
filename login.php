@@ -1,57 +1,50 @@
-<?php include('lib/header.php');
+<?php include_once('lib/header.php');
+      require_once('functions/alert.php');
 
-if(isset($_SESSION['loggedin']) && !empty ($_SESSION['loggedin'])){
-    header("location: dashboard.php");  
-};
+if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
+    // redirect to dashboard
+    header("Location: dashboard.php");
+}
 
-
- ?>
-
-  <h3>Login</h3> 
-  <p>
-    <?php
-    if(isset($_SESSION['message']) && !empty($_SESSION['message'])){
-        echo "<span style ='color: green'>" . $_SESSION['message'] . "</span> ";
-
-        session_destroy();
-
-    }
-    ?>
-    </p>
-
-<form method='POST' action='processlogin.php'>
-
-<p>
-    <?php
-    if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
-        echo "<span style ='color: red'>" . $_SESSION['error'] . "</span> ";
-
-        session_destroy();
-
-    }
-    ?>
-    </p>
-
-  <p>
-       <label for='email'> Email </label>
-       <input 
-       <?php
-    if(isset($_SESSION['email'])){
-        echo "Value =" . $_SESSION['email'];
-        // $_SESSION['first_name']= '';
-    }
-    ?>
-       type='email' name='email' id='email'  placeholder='Email'>
-       </p>
-
-       <p>
-       <label for='password'> Passowrd </label>
-       <input type='password' name='password' id='passwprd'  placeholder='Password'>
-        </p>
-
+?>
+<div class="container">
+    <div class="row col-6">
+        <h3>Login</h3>
+    </div>
+    <div class="row col-6">
         <p>
-        <button type='submit'>Login</button>
+        <?php  print_alert(); ?>
         </p>
+        <form method="POST" action="processlogin.php">
+    
+                
+            <p>
+                <label>Email</label><br />
+                <input
+                
+                <?php              
+                    if(isset($_SESSION['email'])){
+                        echo "value=" . $_SESSION['email'];                                                             
+                    }                
+                ?>
 
+                type="text" class="form-control" name="email" placeholder="Email"  />
+            </p>
+
+            <p>
+                <label>Password</label><br />
+                <input class="form-control" type="password" name="password" placeholder="Password"  />
+            </p>       
+        
+        
+            <p>
+                <button class="btn btn-sm btn-primary" type="submit">Login</button>
+            </p>
+            <p>
+                <a href="forgot.php">Forgot Password</a><br />
+                <a href="register.php">Don't have an account? Register</a>
+            </p>
         </form>
-  <?php include('lib/footer.php') ?> 
+    </div>
+</div>
+<?php include_once('lib/footer.php'); ?>
