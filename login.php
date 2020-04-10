@@ -6,6 +6,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
     header("Location: dashboard.php");
 }
 
+
 ?>
 <div class="container">
     <div class="row col-6">

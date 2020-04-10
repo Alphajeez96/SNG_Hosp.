@@ -74,7 +74,7 @@ if($errorCount > 0){
                 }
 
                 if($user_role == 'Medical Team (MT)') {
-                    redirect_to("mtdashboard.php");
+                    
                     $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;
                 $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
@@ -85,7 +85,7 @@ if($errorCount > 0){
                 die();
 
                 }
-               
+              
             }
             
           
