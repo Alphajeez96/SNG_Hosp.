@@ -13,7 +13,7 @@ Welcome, <?php echo $_SESSION['fullname'] ?>, You are logged in as (<?php echo $
 </div>
 
 <div>
-    <p>Date Joined: <?php echo $_SESSION['loggedin_at'] ?>  </p>
+    <p>Date Joined: <?php echo $_SESSION['register_at'] ?>  </p>
 </div>
 
 <?php include_once('lib/footer.php'); ?>
