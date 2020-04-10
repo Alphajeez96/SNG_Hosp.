@@ -16,7 +16,7 @@ if(!isset($_SESSION['loggedIn'])){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -129,7 +129,8 @@ if(!isset($_SESSION['loggedIn'])){
                 </a>
                 
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                
+                <a class="dropdown-item" href="logout.php" >
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
@@ -160,7 +161,7 @@ if(!isset($_SESSION['loggedIn'])){
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Date Joined</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $_SESSION['register_at'] ?></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $_SESSION['register_at'] ?> (GMT)</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -180,7 +181,7 @@ if(!isset($_SESSION['loggedIn'])){
                       <div class="h5 mb-0 font-weight-bold text-gray-800"> <?php echo $_SESSION['loggedin_at'] ?> (GMT)</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-user- fa-2x text-gray-300"></i>
+                      <i class="fas fa-user fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
