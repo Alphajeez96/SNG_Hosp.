@@ -9,11 +9,11 @@ if(!isset($_SESSION['loggedIn'])){
 
 Welcome, <?php echo $_SESSION['fullname'] ?>, You are logged in as (<?php echo $_SESSION['role'] ?>), and your ID is <?php echo $_SESSION['loggedIn'] ?>.
 <div>
-    <p>Last Login : <?php echo $_SESSION['loggedin_at'] ?> </p>
+    <p>Last Login : <?php echo $_SESSION['loggedin_at'] ?> (GMT) </p>
 </div>
 
 <div>
-    <p>Date Joined: <?php echo $_SESSION['register_at'] ?>  </p>
+    <p>Date Joined: <?php echo $_SESSION['register_at'] ?>  (GMT)  </p>
 </div>
 
 <?php include_once('lib/footer.php'); ?>

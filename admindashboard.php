@@ -11,7 +11,7 @@ Welcome, <?php echo $_SESSION['fullname'] ?>, You are logged in as (<?php echo $
 
 
 <div>
-    <p>Last Login : <?php echo $_SESSION['loggedin_at'] ?> </p>
+    <p>Last Login : <?php echo $_SESSION['loggedin_at'] ?> (GMT) </p>
 </div>
 
 <?php include_once('lib/footer.php'); ?>
