@@ -40,37 +40,65 @@ if($errorCount > 0){
 
             $passwordFromUser = password_verify($password, $passwordFromDB);
 
+            $user_role = $userObject->designation;
+
            
             
-            if($passwordFromDB == $passwordFromUser)
+            if($passwordFromDB == $passwordFromUser) 
+
             {
-                
-                //redicrect to dashboard
+                if($user_role == 'Patient') {
+                    redirect_to("dashboard.php");
+                    $_SESSION['loggedIn'] = $userObject->id; 
+                $_SESSION['email'] = $userObject->email;
+                $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
+                $_SESSION['role'] = $userObject->designation;
+                $_SESSION['register_at'] = $userObject->register_at;
+                $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
+                redirect_to("dashboard.php");
+                die();
+                }
+
+                if($user_role == 'admin' && $passwordFromDB == $passwordFromUser) {
+                   
                 $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;
                 $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
                 $_SESSION['role'] = $userObject->designation;
                 $_SESSION['register_at'] = $userObject->register_at;
                 $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
+                redirect_to("admindashboard.php");
+                die();
+                
+
+                }
+
+                if($user_role == 'Medical Team (MT)') {
+                    redirect_to("mtdashboard.php");
+                    $_SESSION['loggedIn'] = $userObject->id; 
+                $_SESSION['email'] = $userObject->email;
+                $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
+                $_SESSION['role'] = $userObject->designation;
+                $_SESSION['register_at'] = $userObject->register_at;
+                $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
+                redirect_to("mtdashboard.php");
+                die();
+
+                }
+                //redirect to dashboard
+                // $_SESSION['loggedIn'] = $userObject->id; 
+                // $_SESSION['email'] = $userObject->email;
+                // $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
+                // $_SESSION['role'] = $userObject->designation;
+                // $_SESSION['register_at'] = $userObject->register_at;
+                // $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
 
                 // redirect_to("dashboard.php");
             
                 
-                if($userObject->designation = 'Patient')
-                    {
-                        redirect_to("dashboard.php");
-                        
-                    }
-                    if ($userObject->designation = 'Medical Team (MT)') {
-                        redirect_to("mtdashboard.php");
-                        
-                    }
-                    if ($userObject->designation = 'admin') {
-                        redirect_to("admindashboard.php");
-                      
-                    }
+               
             }
-            die();
+            
           
         }        
         
