@@ -48,7 +48,7 @@ if($errorCount > 0){
 
             {
                 if($user_role == 'Patient') {
-                    redirect_to("dashboard.php");
+                    
                     $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;
                 $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
@@ -85,17 +85,6 @@ if($errorCount > 0){
                 die();
 
                 }
-                //redirect to dashboard
-                // $_SESSION['loggedIn'] = $userObject->id; 
-                // $_SESSION['email'] = $userObject->email;
-                // $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
-                // $_SESSION['role'] = $userObject->designation;
-                // $_SESSION['register_at'] = $userObject->register_at;
-                // $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
-
-                // redirect_to("dashboard.php");
-            
-                
                
             }
             

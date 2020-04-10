@@ -5,6 +5,8 @@
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
     // redirect to dashboard
     header("Location: dashboard.php");
+    //write logic for admin to be logged in and access this page 
+    //user object, role and if logged in and role is admin add patient 
 }
 
 ?>

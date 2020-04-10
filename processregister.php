@@ -20,6 +20,7 @@ $_SESSION ['email'] = $email;
 $_SESSION ['gender'] = $gender;
 $_SESSION ['designation'] = $designation;
 $_SESSION ['department'] = $department;
+$_SESSION['registere_at'] =
 
 // $errorArray = [];
 
