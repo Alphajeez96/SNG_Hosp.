@@ -1,4 +1,6 @@
-<?php include_once('lib/header.php'); 
+<?php 
+include_once('lib/header.php'); 
+// session_start();
 include_once('lib/dbcss.php');
 
 if(!isset($_SESSION['loggedIn'])){
