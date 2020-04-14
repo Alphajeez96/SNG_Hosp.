@@ -18,7 +18,7 @@ if(!isset($_SESSION['loggedIn'])){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admindashboard.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -38,6 +38,12 @@ if(!isset($_SESSION['loggedIn'])){
       <!-- Divider -->
       <hr class="sidebar-divider">
 
+      <li class="nav-item">
+        <a class="nav-link" href="reset.php">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Reset Password</span></a>
+      </li>
+      <hr class="sidebar-divider">
       <!-- Heading -->
             <li class="nav-item">
         <a class="nav-link" href="logout.php">
@@ -126,6 +132,12 @@ if(!isset($_SESSION['loggedIn'])){
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                
+                <a class="dropdown-item" href="reset.php">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Reset Password
                 </a>
                 
                 <div class="dropdown-divider"></div>

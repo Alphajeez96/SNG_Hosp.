@@ -20,7 +20,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
       
      
 
-      <form method="POST" action="processregister.php">
+      <form method="POST" id="registration_form" action="processregister.php">
 
       <p>
             <?php print_alerts(); ?>
@@ -42,7 +42,8 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
             pattern="[a-zA-Z][a-zA-Z ]{2,}"
             placeholder="First Name"
             
-          />   
+          />  
+          <span class="error_form" id="fname_error_message"></span> 
         </div>
 
         <div class="for-group">
@@ -57,10 +58,10 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
             id="last name"
             pattern="[a-zA-Z][a-zA-Z ]{2,}"
             name="last_name" 
-            placeholder="Last Name""
-            
+            placeholder="Last Name"
+           
           />
-          
+          <span class="error_form" id="sname_error_message"></span>
         </div>
 
         <div class="for-group">
@@ -75,21 +76,21 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
             name="email"
             placeholder="Email"
             title=""
-            id="email"
-            
-          />       
+            id="email"     
+          />  
+          <span class="error_form" id="email_error_message"></span>     
         </div>
 
-           <p> <label> Password </label></p> 
+           <p> <label for='password'> Password </label></p> 
            <input
+            id='password'
              type="password"
              name="password"
-             placeholder="Password"
-            
-             
+             placeholder="Password"   
            />
-
+           <span class="error_form" id="password_error_message"></span>
            <p>
+
                 <label for='gender'>Gender</label><br />
                 <select id='gender'  name="gender" >
                 <?php              
@@ -113,6 +114,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     ?>
                     >Male</option>
                 </select>
+                <span class="error_form" id="gender_error_message"></span>
             </p>
 
             <p>
@@ -139,6 +141,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     ?>
                     >Patient</option>
                 </select>
+                <span class="error_form" id="designation_error_message"></span>
             </p>
 
             <p> <label for="department"> Department</label></p>
@@ -154,7 +157,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
             placeholder="Department"
             
           />
-     
+          <span class="error_form" id="department_error_message"></span>
           
           
        <button class='buttons' type="submit">CREATE ACCOUNT</button>
@@ -168,4 +171,8 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 
 </div>
 </div> 
+
+<script type='text/javascript'>
+    
+</script>
 <?php include_once('lib/footer.php'); ?>

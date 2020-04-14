@@ -38,6 +38,13 @@ if(!isset($_SESSION['loggedIn'])){
       <!-- Divider -->
       <hr class="sidebar-divider">
 
+      <li class="nav-item">
+        <a class="nav-link" href="reset.php">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Reset password</span></a>
+      </li>
+      <hr class="sidebar-divider">
+
       <!-- Heading -->
             <li class="nav-item">
         <a class="nav-link" href="logout.php">
@@ -131,7 +138,13 @@ if(!isset($_SESSION['loggedIn'])){
                 </a>
                 
                 <div class="dropdown-divider"></div>
-                
+
+                <a class="dropdown-item" href="reset.php" >
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Reset password
+                </a>
+                <div class="dropdown-divider"></div>
+
                 <a class="dropdown-item" href="logout.php" >
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout

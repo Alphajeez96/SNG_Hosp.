@@ -1,51 +1,78 @@
-<?php include_once('lib/header.php');
-      require_once('functions/alert.php');
+
+<?php
+ include_once('lib/test.php');
+ require_once('functions/alert.php');
 
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
     // redirect to dashboard
     header("Location: dashboard.php");
+    //write logic for admin to be logged in and access this page 
+    //user object, role and if logged in and role is admin add patient 
 }
 
-
 ?>
-<div class="container">
-    <div class="row col-6">
-        <h3>Login</h3>
-    </div>
-    <div class="row col-6">
-        
-        <form method="POST" action="processlogin.php">
-    
-        <p>
-        <?php  print_alert(); ?>
+<div class='body'>
+
+
+<div class="signup-wrapper">
+      <div class="img">
+      <a href='index.php'>  <img class="imgs" src="./img/logo.png"> </a>
+      </div>
+      
+     
+
+      <form method="POST" id="registration_form" action="processlogin.php">
+
+      <p>
+            <?php print_alerts(); ?>
         </p>
-            <p>
-                <label>Email</label><br />
-                <input
-                
-                <?php              
+
+        <div class="login-containe" id="del">
+            <h2>Login to your account</h2>
+
+        <div class="for-group">
+           <p> <label for="email">Email Adress</label></p>
+          <input
+          <?php              
                     if(isset($_SESSION['email'])){
                         echo "value=" . $_SESSION['email'];                                                             
                     }                
                 ?>
+            type="email"
+            name="email"
+            placeholder="Email"
+            title=""
+            id="email"     
+          />  
+          <span class="error_form" id="email_error_message"></span>     
+        </div>
 
-                type="text" class="form-control" name="email" placeholder="Email"  />
-            </p>
+           <p> <label for='password'> Password </label></p> 
+           <input
+            id='password'
+             type="password"
+             name="password"
+             placeholder="Password"   
+           />
+           <span class="error_form" id="password_error_message"></span>
+           <p>      
 
-            <p>
-                <label>Password</label><br />
-                <input class="form-control" type="password" name="password" placeholder="Password"  />
-            </p>       
+            <button class='buttons' type="submit">LOG IN</button>
         
-        
-            <p>
-                <button class="btn btn-sm btn-primary" type="submit">Login</button>
-            </p>
-            <p>
-                <a href="forgot.php">Forgot Password</a><br />
-                <a href="register.php">Don't have an account? Register</a>
-            </p>
-        </form>
+            </div>
+        </div>
+        <!-- <div> -->
+        <p class="p"><a href="register.php"> Dont have an account? Register</a></p> 
+         <p class="p"> <a href="forgot.php"> Forgot Password? </a> </p>
+         <!-- </div> -->
+       
     </div>
+    </form>       
+
 </div>
+</div> 
+
+<script type='text/javascript'>
+    
+</script>
 <?php include_once('lib/footer.php'); ?>
