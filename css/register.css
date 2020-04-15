@@ -14,9 +14,10 @@ body{
 .alert-danger{
     width: 20vw;
     height: 12vh;
-    border: 3px solid f8d7da;
+    border: 3px solid #f8d7da;
     margin: auto;
-    color: rgb(216, 15, 15);
+    /* color: rgb(216, 15, 15); */
+    color: white;
 }
 
 .signup-wrapper {

@@ -2,6 +2,7 @@
 
 document.onload = console.log('loadded!');
 
+
 //Registration Validation and error display
 $(function() {
 

@@ -49,7 +49,7 @@ function set_alert($type = "message", $content = ""){
     //printing various alert type
     switch($type){
         case "message":
-            $_SESSION['message']=$content;
+            $_SESSION['message']= $content;
         break;
         case "error":
             $_SESSION['error'] = $content;

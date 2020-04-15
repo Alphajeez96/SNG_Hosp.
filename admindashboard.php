@@ -225,13 +225,8 @@ if(!isset($_SESSION['loggedIn'])){
                 </div>
               </div>
             </div>
-
-            <!-- Pending Requests Card Example -->
            
           </div>
-
-          <!-- Content Row -->
-
          
         </div>
       </div>

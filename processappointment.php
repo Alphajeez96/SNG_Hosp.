@@ -1,0 +1,112 @@
+
+<?php session_start();
+require_once('functions/user.php');
+require_once('functions/redirect.php');
+
+//Data collection / validation
+$errorCount = 0;
+
+$full_name = $_POST['full_name'] != ''   ?  $_POST['first_name']  : $errorCount++  ;
+$email = $_POST['email'] = !''  ? $_POST['email'] :  $errorCount++ ;
+$appointment_date = $_POST['appointment_date'] != '' ?  $_POST['appointment_date'] : $errorCount++;
+$appointment_time = $_POST['appointment_time'] != '' ?  $_POST['appointment_time'] : $errorCount++;
+$appointment_nature = $_POST['appointment_nature'] != '' ?  $_POST['appointment_nature'] : $errorCount++;
+$apppointment_department = $_POST['apppointment_department'] != '' ?  $_POST['apppointment_department'] : $errorCount++;
+$initial_complaint = $_POST['initial_complaint'] != '' ?  $_POST['initial_complaint'] : $errorCount++;
+
+//store session for input
+$_SESSION ['full_name'] = $first_name; 
+$_SESSION ['email'] = $email;
+$_SESSION ['appointment_date'] = $gender;
+$_SESSION ['appointment_time'] = $designation;
+$_SESSION ['appointment_nature'] = $department;
+$_SESSION['apppointment_department'] =$userObject->register_at;
+$_SESSION['initial_complaint'] =$userObject->register_at;
+
+// $errorArray = [];
+
+//check for error before submission
+
+$first_name =($_POST["first_name"]);
+if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
+    header("Location: register.php");              
+    exit();
+}
+$last_name =($_POST["last_name"]);
+if (!preg_match("/^[a-zA-Z ]*$/",$last_name)) {
+    header("Location: register.php");              
+    exit();
+}
+
+$email = ($_POST["email"]);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: register.php");              
+    exit();
+}
+
+
+
+if ($errorCount > 0) {
+    //display accurate message
+    $session_error = "You have " . $errorCount . " error";
+    
+    if($errorCount > 1) {        
+        $session_error .= "s";
+    }
+
+    $session_error .=   " in your form submission";
+    $_SESSION["error"] = $session_error ;
+
+   
+    redirect_to('register.php');
+} else {
+
+    $current_time = time(); // get  user current time
+
+    // count all Users
+    $allUsers = scandir("db/users/");
+    $countAllUsers = count($allUsers);
+
+    $newUserId = $countAllUsers ++;
+    
+    $userObject = [
+        'id'=>$newUserId,
+        'first_name' => $first_name,
+        'last_name' => $last_name,
+        'email' => $email,
+        'password' => password_hash($password, PASSWORD_DEFAULT),
+        'gender' => $gender,
+        'designation' => $designation,
+        'department' => $department,
+        'register_at' => date("F d, Y h:i:s A", $current_time),
+    ];
+ 
+    //check if user already exists
+    $userExists = find_user($email);
+
+       
+    if($userExists){
+        $_SESSION["error"] = "Registration Failed, User already exits ";
+        header("Location: register.php");
+        die();
+    }
+
+    //Save in the database(file system)
+
+    save_user($userObject);
+    $_SESSION['message'] = "Registration Succesful, you can now login" . " " . $first_name;
+    header("location: login.php");
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+        

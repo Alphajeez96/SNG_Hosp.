@@ -40,7 +40,7 @@ if(!isset($_SESSION['loggedIn'])){
 
       <li class="nav-item">
         <a class="nav-link" href="reset.php">
-        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+        <i class="fas fa-unlock-alt fa-sm fa-fw mr-2 text-gray-400"></i>
           <span>Reset password</span></a>
       </li>
       <hr class="sidebar-divider">
@@ -140,7 +140,7 @@ if(!isset($_SESSION['loggedIn'])){
                 <div class="dropdown-divider"></div>
 
                 <a class="dropdown-item" href="reset.php" >
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <i class="fas fa-unlock-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Reset password
                 </a>
                 <div class="dropdown-divider"></div>
@@ -163,7 +163,134 @@ if(!isset($_SESSION['loggedIn'])){
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Patient Dashboard</h1>
-            <!-- <a  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user fa-sm text-white-50"></i> User ID: <?php echo $_SESSION['loggedIn'] ?></a> -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            <i class="fas fa-user fa-sm text-white-50"></i>
+    Book Appointment
+  </button>
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Book An Appointment</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         <form method='POST' id='appointment_form' action='processappointment.php'>
+         <div class="form-group">
+                        <label class="control-label">Full Name</label>
+                        <div>
+                            <input required placeholder='Full Name' type="text" class="form-control input-lg" name="full_name" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">E-Mail Address</label>
+                        <div>
+                            <input placeholder='Email' required type="email" class="form-control input-lg" name="email" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="control-label">Date Of Appointment</label>
+                        <div>
+                            <input required type="date" class="form-control input-lg" name="appointment_date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Time Of Appointment</label>
+                        <div>
+                            <input required type="time" class="form-control input-lg" name="appointment_time">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Nature Of Appointment</label>
+                        <div>
+                        <select id='new_appointment' required class="form-control input-lg" name="appointment_nature" >
+                <?php              
+                    if(isset($_SESSION['appointment_nature'])){
+                        echo "value=" . $_SESSION['appointment_nature'];                                                             
+                    }                
+                ?>
+                    <option value="">Click To Select</option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['appointment_nature']) && $_SESSION['designation'] == 'New'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    >  New </option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['appointment_nature']) && $_SESSION['appointment_nature'] == 'Follow-Up'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    >Follow-Up</option>
+                </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for='department' class="control-label"> Department</label>
+                        <div>
+                        <select id='department' required class="form-control input-lg" name="apppointment_department" >
+                <?php              
+                    if(isset($_SESSION['apppointment_department'])){
+                        echo "value=" . $_SESSION['apppointment_department'];                                                             
+                    }                
+                ?>
+                    <option value="">Click To Select</option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['apppointment_department']) && $_SESSION['apppointment_department'] == 'Laboratory'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    > Laboratory </option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['apppointment_department']) && $_SESSION['apppointment_department'] == 'Radiology Unit'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    >Radiology Unit</option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['apppointment_department']) && $_SESSION['apppointment_department'] == 'General Surgery'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    >General Surgery</option>
+                </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Initial Complaint</label>
+                        <div>
+                        <textarea required name="initial_complaint" placeholder='Enter Complaint here...' class="form-control input-lg" form="appointment_form"></textarea>
+                        </div>
+                    </div>
+          
+        
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <button class="btn btn-success" type="submit">Book</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</div>
+            <!-- <a href='appointment.php' class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user fa-sm text-white-50"></i> Book Appointment</a> -->
           </div>
 
           <!-- Content Row -->
