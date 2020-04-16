@@ -67,7 +67,7 @@ if ($errorCount > 0) {
     $appointmentObject = [
         'id'=>$newAppointmentId,
         'full_name' => $full_name,
-        // 'email' => $email,
+        'email' => $email,
         'appointment_date' => $appointment_date,
         // 'gender' => $gender, 
         'appointment_time' => $appointment_time,
