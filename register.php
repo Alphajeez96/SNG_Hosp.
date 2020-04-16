@@ -145,18 +145,35 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
             </p>
 
             <p> <label for="department"> Department</label></p>
-                <input
+            <select id='department' required class="form-control input-lg" name="department" >
                 <?php              
                     if(isset($_SESSION['department'])){
                         echo "value=" . $_SESSION['department'];                                                             
                     }                
                 ?>
-            type="text"
-            id="department "
-            name="department" 
-            placeholder="Department"
-            
-          />
+                    <option value="">Click To Select</option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['department']) && $_SESSION['department'] == 'Laboratory'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    > Laboratory </option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['department']) && $_SESSION['department'] == 'Radiology Unit'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    >Radiology Unit</option>
+                    <option 
+                    <?php              
+                        if(isset($_SESSION['department']) && $_SESSION['department'] == 'General Surgery'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    >General Surgery</option>
+                </select>
           <span class="error_form" id="department_error_message"></span>
           
           

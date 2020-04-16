@@ -10,7 +10,7 @@ require_once('functions/redirect.php');
 $errorCount = 0;
 
 $full_name = $_POST['full_name'] != ''   ?  $_POST['full_name']  : $errorCount++  ;
-$email = $_POST['email'] = !''  ? $_POST['email'] :  $errorCount++ ;
+$email = $_POST['appointment_email'] = !''  ? $_POST['appointment_email'] :  $errorCount++ ;
 $appointment_date = $_POST['appointment_date'] != '' ?  $_POST['appointment_date'] : $errorCount++;
 $appointment_time = $_POST['appointment_time'] != '' ?  $_POST['appointment_time'] : $errorCount++;
 $appointment_nature = $_POST['appointment_nature'] != '' ?  $_POST['appointment_nature'] : $errorCount++;
@@ -19,7 +19,7 @@ $initial_complaint = $_POST['initial_complaint'] != '' ?  $_POST['initial_compla
 
 //store session for input
 $_SESSION ['full_name'] = $full_name; 
-$_SESSION ['email'] = $email;
+$_SESSION ['appointment_email'] = $email;
 $_SESSION ['appointment_date'] = $appointment_date;
 $_SESSION ['appointment_time'] = $appointment_time;
 $_SESSION ['appointment_nature'] = $appointment_nature;
@@ -36,11 +36,11 @@ if (!preg_match("/^[a-zA-Z ]*$/",$full_name)) {
     exit();
 }
 
-// $email = ($_POST["email"]);
-// if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//     header("Location: dashboard.php");              
-//     exit();
-// }
+$appointment_email = ($_POST["appointment_email"]);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: dashboard.php");              
+    exit();
+}
 
 if ($errorCount > 0) {
     //display accurate message
@@ -67,7 +67,7 @@ if ($errorCount > 0) {
     $appointmentObject = [
         'id'=>$newAppointmentId,
         'full_name' => $full_name,
-        'email' => $email,
+        'appointment_email' => $appointment_email,
         'appointment_date' => $appointment_date,
         // 'gender' => $gender, 
         'appointment_time' => $appointment_time,
