@@ -1,6 +1,5 @@
 <?php 
 include_once('lib/header.php'); 
-// session_start();
 include_once('lib/dbcss.php');
 
 if(!isset($_SESSION['loggedIn'])){
@@ -180,7 +179,7 @@ if(!isset($_SESSION['loggedIn'])){
         
         <!-- Modal body -->
         <div class="modal-body">
-         <form method='POST' id='appointment_form' action='processappointment.php'>
+         <form method='POST' onsubmit='sweet_alert();' id='appointment_form' action='processappointment.php'>
          <div class="form-group">
                         <label class="control-label">Full Name</label>
                         <div>
@@ -218,7 +217,7 @@ if(!isset($_SESSION['loggedIn'])){
                     <option value="">Click To Select</option>
                     <option 
                     <?php              
-                        if(isset($_SESSION['appointment_nature']) && $_SESSION['designation'] == 'New'){
+                        if(isset($_SESSION['appointment_nature']) && $_SESSION['appointment_nature'] == 'New'){
                             echo "selected";                                                           
                         }                
                     ?>
@@ -272,7 +271,7 @@ if(!isset($_SESSION['loggedIn'])){
                     <div class="form-group">
                         <label class="control-label">Initial Complaint</label>
                         <div>
-                        <textarea required name="initial_complaint" placeholder='Enter Complaint here...' class="form-control input-lg" form="appointment_form"></textarea>
+                        <textarea required name="initial_complaint" placeholder='Enter Complaint here...' class="form-control input-lg" ></textarea>
                         </div>
                     </div>
           
@@ -288,6 +287,8 @@ if(!isset($_SESSION['loggedIn'])){
       </div>
     </div>
   </div>
+
+ 
   
 </div>
             <!-- <a href='appointment.php' class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user fa-sm text-white-50"></i> Book Appointment</a> -->
@@ -376,14 +377,14 @@ if(!isset($_SESSION['loggedIn'])){
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <!-- <script src="js/sb-admin-2.min.js"></script> -->
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- <script src="vendor/chart.js/Chart.min.js"></script>  -->
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <!-- <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script> -->
 
 </body>
 
