@@ -2,7 +2,7 @@
 include_once('lib/header.php'); 
 // session_start();
 include_once('lib/dbcss.php');
-
+require_once('functions/appointments.php');
 if(!isset($_SESSION['loggedIn'])){
     // redirect to login
     header("Location: login.php"); 
@@ -68,8 +68,12 @@ if(!isset($_SESSION['loggedIn'])){
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-          <h4>User ID:<?php echo $_SESSION['loggedIn'] ?></h4>
+          <!-- Topbar Search --> 
+        
+          <h6 class='mx-2'>DEPARTMENT: <?php echo $_SESSION['department'] ?></h6>
+          <h6 class='mx-4'>STAFF ID: <?php echo $_SESSION['loggedIn'] ?></h6>
+         
+         
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -209,7 +213,7 @@ if(!isset($_SESSION['loggedIn'])){
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Appointments</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0% try counting appointments</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -222,12 +226,15 @@ if(!isset($_SESSION['loggedIn'])){
                       <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                     </div>
                   </div>
+                 
                 </div>
+                
               </div>
-            </div>
 
+            </div>
+            <?php echo $_SESSION['logged'] ?>
             <!-- Pending Requests Card Example -->
-           
+            
           </div>
 
           <!-- Content Row -->

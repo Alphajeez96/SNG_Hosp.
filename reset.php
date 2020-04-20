@@ -80,10 +80,7 @@
             
                 </div>
             </div>
-            <!-- <div> -->
-            <!-- <p class="p"><a href="login.php"> Back to login</a></p>  -->
-            
-            <!-- </div> -->
+           
         
         </div>
         </form>       

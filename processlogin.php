@@ -37,22 +37,23 @@ if($errorCount > 0){
             $userString = file_get_contents("db/users/".$currentUser->email . ".json");
             $userObject = json_decode($userString);
             $passwordFromDB = $userObject->password;
+            
 
             $passwordFromUser = password_verify($password, $passwordFromDB);
 
             $user_role = $userObject->designation;
 
-           
             
             if($passwordFromDB == $passwordFromUser) 
 
             {
                 if($user_role == 'Patient') {
                     
-                    $_SESSION['loggedIn'] = $userObject->id; 
+                $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;
                 $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
                 $_SESSION['role'] = $userObject->designation;
+                $_SESSION ['department'] = $userObject ->department;
                 $_SESSION['register_at'] = $userObject->register_at;
                 $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
                 redirect_to("dashboard.php");
@@ -73,12 +74,13 @@ if($errorCount > 0){
 
                 }
 
-                if($user_role == 'Medical Team (MT)') {
+                if($user_role == 'Medical Team (MT)') { 
                     
                     $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;
                 $_SESSION['fullname'] = $userObject->first_name . " " . $userObject->last_name;
                 $_SESSION['role'] = $userObject->designation;
+                $_SESSION ['department'] = $userObject ->department;
                 $_SESSION['register_at'] = $userObject->register_at;
                 $_SESSION['loggedin_at']= date("F d, Y h:i:s A", $current_time);
                 redirect_to("mtdashboard.php");
@@ -89,7 +91,9 @@ if($errorCount > 0){
             }
             
           
-        }        
+        }   
+        
+        
         
 
     set_alert('error',"Invalid Email or Password");
@@ -97,3 +101,4 @@ if($errorCount > 0){
     die();
 
 }
+

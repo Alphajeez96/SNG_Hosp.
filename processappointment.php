@@ -10,7 +10,7 @@ require_once('functions/redirect.php');
 $errorCount = 0;
 
 $full_name = $_POST['full_name'] != ''   ?  $_POST['full_name']  : $errorCount++  ;
-$email = $_POST['appointment_email'] = !''  ? $_POST['appointment_email'] :  $errorCount++ ;
+$appointment_email = $_POST['appointment_email'] = !''  ? $_POST['appointment_email'] :  $errorCount++ ;
 $appointment_date = $_POST['appointment_date'] != '' ?  $_POST['appointment_date'] : $errorCount++;
 $appointment_time = $_POST['appointment_time'] != '' ?  $_POST['appointment_time'] : $errorCount++;
 $appointment_nature = $_POST['appointment_nature'] != '' ?  $_POST['appointment_nature'] : $errorCount++;
@@ -19,7 +19,7 @@ $initial_complaint = $_POST['initial_complaint'] != '' ?  $_POST['initial_compla
 
 //store session for input
 $_SESSION ['full_name'] = $full_name; 
-$_SESSION ['appointment_email'] = $email;
+$_SESSION ['appointment_email'] = $appointment_email;
 $_SESSION ['appointment_date'] = $appointment_date;
 $_SESSION ['appointment_time'] = $appointment_time;
 $_SESSION ['appointment_nature'] = $appointment_nature;
@@ -37,7 +37,7 @@ if (!preg_match("/^[a-zA-Z ]*$/",$full_name)) {
 }
 
 $appointment_email = ($_POST["appointment_email"]);
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if (!filter_var($appointment_email, FILTER_VALIDATE_EMAIL)) {
     header("Location: dashboard.php");              
     exit();
 }
@@ -55,9 +55,9 @@ if ($errorCount > 0) {
 
    
     redirect_to('dashboard.php');
-} else {
+}
 
-
+else{
     // count all Users
     $allAppointments = scandir("db/appointments/");
     $countAllAppointments = count($allAppointments);
@@ -75,15 +75,33 @@ if ($errorCount > 0) {
         'apppointment_department' => $apppointment_department,
         'initial_complaint' => $initial_complaint
     ];
- 
-    
-    //Save in the database(file system)
 
     save_appointment($appointmentObject);
-    redirect_to("dashboard.php");
+    // redirect_to("dashboard.php");  
+    }
+
+    if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
+        // redirect to dashboard
+        // header("Location: dashboard.php");
+    $currentAppointment = find_appointment($appointment_email);
+        print_r($currentAppointment);
+        die();
     
+    if($currentAppointment){
+        //check the user password.
+          $appointmentString = file_get_contents("db/appointments/".$currentAppointment->email . ".json");
+          $appointmentObject = json_decode($appointmentString);
 
-   
+          $appointment_role = $appointmentObject->apppointment_department;
+
+          if( $appointment_role == 'Laboratory'){
+            $_SESSION['full_name'] = $appointmentObject->full_name; 
+            $_SESSION['email'] = $appointmentObject->email;
+            $_SESSION['fullname'] = $appointmentObject->first_name . " " . $userObject->last_name;
+            $_SESSION['role'] = $appointmentObject->designation;
+            $_SESSION ['department'] = $appointmentObject ->department;
+            $_SESSION['register_at'] = $appointmentObject->register_at;
+          }
+    }
 }
-
 ?>        

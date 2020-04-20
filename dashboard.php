@@ -189,7 +189,7 @@ if(!isset($_SESSION['loggedIn'])){
                     <div class="form-group">
                         <label class="control-label">E-Mail Address</label>
                         <div>
-                            <input placeholder='Email' required type="email" class="form-control input-lg" name="email" value="">
+                            <input placeholder='Email' required type="email" class="form-control input-lg" name="appointment_email" value="">
                         </div>
                     </div>
                     <div class="form-group">
