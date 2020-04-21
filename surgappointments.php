@@ -3,9 +3,8 @@ include_once('lib/header.php');
 
 require_once('functions/alert.php');
 include_once('lib/dbcss.php');
-require_once('functions/redirect.php');
+
 require_once('functions/appointments.php');
-require_once('functions/user.php');
 
 
 
@@ -13,7 +12,7 @@ require_once('functions/user.php');
 $allAppointments = scandir("db/appointments/"); 
     $countAllAppointments = count($allAppointments);
 
-    for ($counter = 2; $counter < $countAllAppointments ; $counter+1) {
+    for ($counter = 2; $counter < $countAllAppointments ; $counter++) {
        
         $currentAppointment = $allAppointments[$counter];
 
@@ -31,8 +30,8 @@ $allAppointments = scandir("db/appointments/");
     }
 
     $UserPath = "db/users/".$currentAppointment;
-					// $userlogin = json_decode(file_get_contents($UserPath));
-					// $patient_name = $userlogin->first_name." ".$userlogin->last_name;
+					$userlogin = json_decode(file_get_contents($UserPath));
+					$patient_name = $userlogin->first_name." ".$userlogin->last_name;
 					if(($appointment_department) == 'General Surgery' && ($_SESSION['department']) == 'General Surgery' && $counter >= 2 ){
 ?>
             <body id="page-top">

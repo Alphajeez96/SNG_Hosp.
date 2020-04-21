@@ -31,8 +31,8 @@ $allAppointments = scandir("db/appointments/");
     }
 
     $UserPath = "db/users/".$currentAppointment;
-					// $userlogin = json_decode(file_get_contents($UserPath));
-					// $patient_name = $userlogin->first_name." ".$userlogin->last_name;
+					$userlogin = json_decode(file_get_contents($UserPath));
+					$patient_name = $userlogin->first_name." ".$userlogin->last_name;
 					if(($appointment_department) == 'Radiology Unit' && ($_SESSION['department']) == 'Radiology Unit'){
 ?>
             <body id="page-top">
