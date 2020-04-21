@@ -8,8 +8,18 @@ require_once('functions/appointments.php');
 require_once('functions/user.php');
 
 
-$allAppointments = find_appointment($appointment_email); 
-    
+
+
+$allAppointments = scandir("db/appointments/"); 
+    $countAllAppointments = count($allAppointments);
+
+    for ($counter = 2; $counter < $countAllAppointments ; $counter++) {
+       
+        $currentAppointment = $allAppointments[$counter];
+
+            $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
+            $appointmentObject = json_decode($appointmentString);
+        
     $patient_name = $appointmentObject->full_name;
     $appointment_email = $appointmentObject->appointment_email;
     $appointment_nature = $appointmentObject->appointment_nature;
@@ -23,7 +33,7 @@ $allAppointments = find_appointment($appointment_email);
     $UserPath = "db/users/".$currentAppointment;
 					// $userlogin = json_decode(file_get_contents($UserPath));
 					// $patient_name = $userlogin->first_name." ".$userlogin->last_name;
-					if(($appointment_department) == 'Radiology Unit' && ($_SESSION['department']) == 'Radiology Unit' && $counter >= 2 ){
+					if(($appointment_department) == 'Radiology Unit' && ($_SESSION['department']) == 'Radiology Unit'){
 ?>
             <body id="page-top">
 <!-- Page Wrapper -->
@@ -54,7 +64,7 @@ $allAppointments = find_appointment($appointment_email);
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-      <a class="nav-link" href="allappointments.php">
+      <a class="nav-link" href="radappointments.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Appointments</span></a>
     </li>

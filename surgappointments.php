@@ -13,7 +13,7 @@ require_once('functions/user.php');
 $allAppointments = scandir("db/appointments/"); 
     $countAllAppointments = count($allAppointments);
 
-    for ($counter = 2; $counter < $countAllAppointments ; $counter++) {
+    for ($counter = 2; $counter < $countAllAppointments ; $counter+1) {
        
         $currentAppointment = $allAppointments[$counter];
 
@@ -64,7 +64,7 @@ $allAppointments = scandir("db/appointments/");
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-      <a class="nav-link" href="allappointments.php">
+      <a class="nav-link" href="surgappointments.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Appointments</span></a>
     </li>

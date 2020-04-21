@@ -64,7 +64,7 @@ $allAppointments = scandir("db/appointments/");
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-      <a class="nav-link" href="allappointments.php">
+      <a class="nav-link" href="labappointments.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Appointments</span></a>
     </li>
@@ -223,6 +223,7 @@ $allAppointments = scandir("db/appointments/");
                       <td><?php echo $appointment_nature;?></td>
                       <td><?php echo $appointment_department;?></td>
                     </tr>
+                  
                    
  <?php }
  ?>  
