@@ -39,12 +39,21 @@ if(!isset($_SESSION['loggedIn'])){
       <hr class="sidebar-divider">
 
       <li class="nav-item">
+        <a class="nav-link" href="allappointments.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Appointments</span></a>
+      </li>
+      <hr class="sidebar-divider">
+      <!-- Heading -->
+
+      <li class="nav-item">
         <a class="nav-link" href="reset.php">
         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
           <span>Reset Password</span></a>
       </li>
-      <hr class="sidebar-divider">
-      <!-- Heading -->
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item">
         <a class="nav-link" href="logout.php">
         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -145,6 +154,7 @@ if(!isset($_SESSION['loggedIn'])){
                   Reset Password
                 </a>
                 <div class="dropdown-divider"></div>
+
                 
                 <a class="dropdown-item" href="logout.php" >
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -231,8 +241,7 @@ if(!isset($_SESSION['loggedIn'])){
                 
               </div>
 
-            </div>
-            <?php echo $_SESSION['logged'] ?>
+            </div> 
             <!-- Pending Requests Card Example -->
             
           </div>

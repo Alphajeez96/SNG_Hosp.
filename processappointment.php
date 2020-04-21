@@ -77,31 +77,8 @@ else{
     ];
 
     save_appointment($appointmentObject);
-    // redirect_to("dashboard.php");  
+    redirect_to("dashboard.php");  
     }
 
-    if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
-        // redirect to dashboard
-        // header("Location: dashboard.php");
-    $currentAppointment = find_appointment($appointment_email);
-        print_r($currentAppointment);
-        die();
-    
-    if($currentAppointment){
-        //check the user password.
-          $appointmentString = file_get_contents("db/appointments/".$currentAppointment->email . ".json");
-          $appointmentObject = json_decode($appointmentString);
-
-          $appointment_role = $appointmentObject->apppointment_department;
-
-          if( $appointment_role == 'Laboratory'){
-            $_SESSION['full_name'] = $appointmentObject->full_name; 
-            $_SESSION['email'] = $appointmentObject->email;
-            $_SESSION['fullname'] = $appointmentObject->first_name . " " . $userObject->last_name;
-            $_SESSION['role'] = $appointmentObject->designation;
-            $_SESSION ['department'] = $appointmentObject ->department;
-            $_SESSION['register_at'] = $appointmentObject->register_at;
-          }
-    }
-}
+ 
 ?>        

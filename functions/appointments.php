@@ -9,19 +9,17 @@ function find_appointment($appointment_email = ""){
     $allAppointments = scandir("db/appointments/"); 
     $countAllAppointments = count($allAppointments);
 
-    for ($counter = 0; $counter < $countAllAppointments ; $counter++) {
+    for ($counter = 2; $counter < $countAllAppointments ; $counter++) {
        
         $currentAppointment = $allAppointments[$counter];
+
     }
         if($currentAppointment == $appointment_email . ".json"){
           //check the user password.
             $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
             $appointmentObject = json_decode($appointmentString);
                        
-            return $appointmentObject;
-          
-               
-        
+            return $appointmentObject;        
     }
 
     // return false;

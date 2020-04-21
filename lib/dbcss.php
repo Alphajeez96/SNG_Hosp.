@@ -10,5 +10,5 @@
 
     <!-- <link rel="stylesheet" href="css/styles.css"> -->
     <link rel="stylesheet" href="css/db.css">
-    <script src="js/scripts.js"></script>
+
 </head>
