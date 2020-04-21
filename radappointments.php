@@ -8,16 +8,8 @@ require_once('functions/appointments.php');
 require_once('functions/user.php');
 
 
-$allAppointments = scandir("db/appointments/"); 
-    $countAllAppointments = count($allAppointments);
-
-    for ($counter = 2; $counter < $countAllAppointments ; $counter++) {
-       
-        $currentAppointment = $allAppointments[$counter];
-
-            $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
-            $appointmentObject = json_decode($appointmentString);
-        
+$allAppointments = find_appointment($appointment_email); 
+    
     $patient_name = $appointmentObject->full_name;
     $appointment_email = $appointmentObject->appointment_email;
     $appointment_nature = $appointmentObject->appointment_nature;

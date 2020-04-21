@@ -14,14 +14,11 @@ function find_appointment($appointment_email = ""){
        
         $currentAppointment = $allAppointments[$counter];
 
-    }
-        if($currentAppointment == $appointment_email . ".json"){
-          //check the user password.
             $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
             $appointmentObject = json_decode($appointmentString);
                        
             return $appointmentObject;        
     }
 
-    // return false;
+
 }
