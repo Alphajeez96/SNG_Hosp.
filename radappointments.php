@@ -33,7 +33,7 @@ $allAppointments = scandir("db/appointments/");
     $UserPath = "db/users/".$currentAppointment;
 					// $userlogin = json_decode(file_get_contents($UserPath));
 					// $patient_name = $userlogin->first_name." ".$userlogin->last_name;
-					if(($appointment_department) == ($_SESSION['department']) && $counter >= 2 ){
+					if(($appointment_department) == 'Radiology Unit' && ($_SESSION['department']) == 'Radiology Unit' && $counter >= 2 ){
 ?>
             <body id="page-top">
 <!-- Page Wrapper -->
