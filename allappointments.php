@@ -1,6 +1,6 @@
 <?php 
+include_once('lib/header.php'); 
 
-session_start();
 require_once('functions/alert.php');
 include_once('lib/dbcss.php');
 require_once('functions/redirect.php');
@@ -30,17 +30,12 @@ $allAppointments = scandir("db/appointments/");
     $complaint = $appointmentObject->initial_complaint;
     }
 
-    // $UserPath = "db/users/".$currentAppointment;
-	// 				$userlogin = json_decode(file_get_contents($UserPath));
-	// 				$patient_name = $userlogin->first_name." ".$userlogin->last_name;
+    $UserPath = "db/users/".$currentAppointment;
+					// $userlogin = json_decode(file_get_contents($UserPath));
+					// $patient_name = $userlogin->first_name." ".$userlogin->last_name;
 					if(($appointment_department) == ($_SESSION['department']) && $counter >= 2 ){
 ?>
-
-
-           
-
             <body id="page-top">
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -218,16 +213,6 @@ $allAppointments = scandir("db/appointments/");
                       <th>Department</th>
                     </tr>
                   </thead>
-                  <!-- <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot> -->
                   <tbody>
                     <tr>
                       <td><?php echo $patient_name;?></td>

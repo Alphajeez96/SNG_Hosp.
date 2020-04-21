@@ -1,4 +1,5 @@
-<?php include_once('alert.php');
+<?php 
+include_once('alert.php');
 
 function save_appointment($appointmentObject){
     file_put_contents("db/appointments/". $appointmentObject['appointment_email']  .  ".json", json_encode($appointmentObject));
