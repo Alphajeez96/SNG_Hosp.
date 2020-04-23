@@ -218,7 +218,7 @@ $allAppointments = scandir("db/appointments/");
   
   
           if(($appointment_department) == 'General Surgery' && ($_SESSION['department']) == 'General Surgery' 
-          && !empty($currentAppointment)){
+        && $counter >=2 ){
 ?>
                             <tbody>
                     <tr>
