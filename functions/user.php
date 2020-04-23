@@ -1,4 +1,5 @@
 <?php include_once('alert.php');
+include_once('token.php');
 
 function is_user_loggedIn(){
 

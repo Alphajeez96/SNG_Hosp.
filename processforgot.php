@@ -3,6 +3,7 @@ require_once('functions/alert.php');
 require_once('functions/redirect.php');
 require_once('functions/token.php');
 require_once('functions/user.php');
+require_once('functions/email.php');
  
     //Data collection / validation
     $errorCount = 0;

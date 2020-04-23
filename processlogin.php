@@ -37,8 +37,6 @@ if($errorCount > 0){
             $userString = file_get_contents("db/users/".$currentUser->email . ".json");
             $userObject = json_decode($userString);
             $passwordFromDB = $userObject->password;
-            
-
             $passwordFromUser = password_verify($password, $passwordFromDB);
 
             $user_role = $userObject->designation;

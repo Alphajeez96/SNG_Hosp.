@@ -160,12 +160,20 @@ if(!isset($_SESSION['loggedIn'])){
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <div class="d-sm-flex align-items-center col-12  mb-4">
+            <div class='col-md-8'>
             <h1 class="h3 mb-0 text-gray-800">Patient Dashboard</h1>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            </div>
+            <div class='ml-5 col-md-4'>
+            <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#myModal">
             <i class="fas fa-user fa-sm text-white-50"></i>
     Book Appointment
   </button>
+
+  <a href="bill.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-yen-sign fa-sm text-white-50"></i> Pay Bill</a>
+  </div>
+
+  
 
   <div class="modal" id="myModal">
     <div class="modal-dialog">

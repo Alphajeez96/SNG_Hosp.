@@ -1,4 +1,4 @@
-    <?php 
+<?php 
     include_once('lib/test.php');
     // include_once('lib/header.php'); 
         require_once('functions/alert.php');
@@ -15,10 +15,10 @@
 
     <div class='body'>
 
-
+ 
     <div class="signup-wrapper">
         <div class="img">
-        <a 
+        <a
             <?php  
              if(is_user_loggedIn() &&  $_SESSION['role'] == 'admin'){
                 echo " href='admindashboard.php'";
@@ -28,8 +28,14 @@
                     echo " href='dashboard.php'";
                 }
 
-                if(is_user_loggedIn() &&  $_SESSION['role'] == 'Medical Team (MT)'){
+                if(is_user_loggedIn() &&  $_SESSION['role'] == 'Medical Team (MT)' && $_SESSION['department'] == 'Laboratory'){
                     echo "href='mtdashboard.php'";
+                }
+                if(is_user_loggedIn() &&  $_SESSION['role'] == 'Medical Team (MT)' && $_SESSION['department'] == 'General Surgery'){
+                    echo "href='surgerydashboard.php'";
+                }
+                if(is_user_loggedIn() &&  $_SESSION['role'] == 'Medical Team (MT)' && $_SESSION['department'] == 'Radiology Unit'){
+                    echo "href='radiologydashboard.php'";
                 }
      
     ?>
