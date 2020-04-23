@@ -164,6 +164,7 @@
           <!-- Page Heading -->
           <h1 class="h3 ml-4 mb-2 text-gray-800">Appointments</h1>
          
+       
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -178,6 +179,10 @@
                       <th>Department</th>
                     </tr>
                   </thead>
+                
+              
+
+           
 
 
 <?php 
@@ -211,11 +216,9 @@ $allAppointments = scandir("db/appointments/");
     $appointment_department = $appointmentObject->apppointment_department;
     $complaint = $appointmentObject->initial_complaint;
   
-
-    // $UserPath = "db/users/".$currentAppointment;
-		// 			$userlogin = json_decode(file_get_contents($UserPath));
-		// 			$patient_name = $userlogin->first_name." ".$userlogin->last_name;
-					if(($appointment_department) == 'General Surgery' && ($_SESSION['department']) == 'General Surgery'){
+  
+          if(($appointment_department) == 'General Surgery' && ($_SESSION['department']) == 'General Surgery' 
+          && !empty($currentAppointment)){
 ?>
                             <tbody>
                     <tr>
@@ -228,5 +231,9 @@ $allAppointments = scandir("db/appointments/");
                       <td><?php echo $appointment_department;?></td>
                     </tr>
                    
- <?php } }
- ?>  
+ <?php }
+}
+
+?> 
+
+

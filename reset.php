@@ -20,7 +20,7 @@
         <div class="img">
         <a
             <?php  
-             if(is_user_loggedIn() &&  $_SESSION['role'] == 'admin'){
+             if(is_user_loggedIn() &&  $_SESSION['role'] == 'Admin'){
                 echo " href='admindashboard.php'";
              }
 
@@ -36,7 +36,7 @@
                 }
                 if(is_user_loggedIn() &&  $_SESSION['role'] == 'Medical Team (MT)' && $_SESSION['department'] == 'Radiology Unit'){
                     echo "href='radiologydashboard.php'";
-                }
+                }   
      
     ?>
       href ='dashboard.php'  > <img class="imgs" src="./img/logo.png"> </a>
