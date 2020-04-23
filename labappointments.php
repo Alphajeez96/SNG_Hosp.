@@ -30,9 +30,9 @@ $allAppointments = scandir("db/appointments/");
     $complaint = $appointmentObject->initial_complaint;
     }
 
-    $UserPath = "db/users/".$currentAppointment;
-					$userlogin = json_decode(file_get_contents($UserPath));
-					$patient_name = $userlogin->first_name." ".$userlogin->last_name;
+    // $UserPath = "db/users/".$currentAppointment;
+		// 			$userlogin = json_decode(file_get_contents($UserPath));
+		// 			$patient_name = $userlogin->first_name." ".$userlogin->last_name;
 					if(($appointment_department) == 'Laboratory' && ($_SESSION['department']) == 'Laboratory' && $counter >= 2 ){
 ?>
             <body id="page-top">
