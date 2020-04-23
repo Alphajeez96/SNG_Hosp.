@@ -59,7 +59,7 @@ if($errorCount > 0){
                 die();
                 }
 
-                if($user_role == 'admin') {
+                if($user_role == 'admin' && $user_department == 'admin') {
                    
                 $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;

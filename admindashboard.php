@@ -30,13 +30,27 @@ if(!isset($_SESSION['loggedIn'])){
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="dashboard.php">
+        <a class="nav-link" href="admindashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+    
+<li class="nav-item">
+  <a class="nav-link" href="allstaff.php">
+  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+    <span> Staff</span></a>
+</li>
+<hr class="sidebar-divider">
+    
+<li class="nav-item">
+  <a class="nav-link" href="allpatients.php">
+  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+    <span> Patients</span></a>
+</li>
+<hr class="sidebar-divider">
 
       <li class="nav-item">
         <a class="nav-link" href="reset.php">
@@ -234,21 +248,7 @@ if(!isset($_SESSION['loggedIn'])){
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  
 
 </body>
 
