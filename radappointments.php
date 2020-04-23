@@ -1,41 +1,6 @@
-<?php 
-include_once('lib/header.php'); 
+<?php include_once('lib/header.php'); ?>
 
-require_once('functions/alert.php');
-include_once('lib/dbcss.php');
-require_once('functions/redirect.php');
-require_once('functions/appointments.php');
-require_once('functions/user.php');
-
-
-
-
-$allAppointments = scandir("db/appointments/"); 
-    $countAllAppointments = count($allAppointments);
-
-    for ($counter = 2; $counter < $countAllAppointments ; $counter++) {
-       
-        $currentAppointment = $allAppointments[$counter];
-
-            $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
-            $appointmentObject = json_decode($appointmentString);
-        
-    $patient_name = $appointmentObject->full_name;
-    $appointment_email = $appointmentObject->appointment_email;
-    $appointment_nature = $appointmentObject->appointment_nature;
-    $appointment_date = $appointmentObject->appointment_date;
-    $appointment_time = $appointmentObject->appointment_time;
-    $appointment_nature = $appointmentObject->appointment_nature;
-    $appointment_department = $appointmentObject->apppointment_department;
-    $complaint = $appointmentObject->initial_complaint;
-   
-
-    $UserPath = "db/users/".$currentAppointment;
-					$userlogin = json_decode(file_get_contents($UserPath));
-					$patient_name = $userlogin->first_name." ".$userlogin->last_name;
-					if(($appointment_department) == 'Radiology Unit' && ($_SESSION['department']) == 'Radiology Unit'){
-?>
-            <body id="page-top">
+<body id="page-top">
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -213,7 +178,46 @@ $allAppointments = scandir("db/appointments/");
                       <th>Department</th>
                     </tr>
                   </thead>
-                  <tbody>
+
+
+<?php 
+
+
+require_once('functions/alert.php');
+include_once('lib/dbcss.php');
+require_once('functions/redirect.php');
+require_once('functions/appointments.php');
+require_once('functions/user.php');
+
+
+
+
+$allAppointments = scandir("db/appointments/"); 
+    $countAllAppointments = count($allAppointments);
+
+    for ($counter = 2; $counter < $countAllAppointments ; $counter++) {
+       
+        $currentAppointment = $allAppointments[$counter];
+
+            $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
+            $appointmentObject = json_decode($appointmentString);
+        
+    $patient_name = $appointmentObject->full_name;
+    $appointment_email = $appointmentObject->appointment_email;
+    $appointment_nature = $appointmentObject->appointment_nature;
+    $appointment_date = $appointmentObject->appointment_date;
+    $appointment_time = $appointmentObject->appointment_time;
+    $appointment_nature = $appointmentObject->appointment_nature;
+    $appointment_department = $appointmentObject->apppointment_department;
+    $complaint = $appointmentObject->initial_complaint;
+  
+
+    // $UserPath = "db/users/".$currentAppointment;
+		// 			$userlogin = json_decode(file_get_contents($UserPath));
+		// 			$patient_name = $userlogin->first_name." ".$userlogin->last_name;
+					if(($appointment_department) == 'Radiology Unit' && ($_SESSION['department']) == 'Radiology Unit'){
+?>
+                            <tbody>
                     <tr>
                       <td><?php echo $patient_name;?></td>
                       <td><?php echo $appointment_email;?></td>
@@ -224,5 +228,5 @@ $allAppointments = scandir("db/appointments/");
                       <td><?php echo $appointment_department;?></td>
                     </tr>
                    
- <?php }  }
+ <?php } }
  ?>  

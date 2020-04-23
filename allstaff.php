@@ -1,3 +1,17 @@
+
+
+<thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Designation</th>
+                      <th>Department</th>
+                      <th>Date Joined</th>
+                      <th>Last Login</th>
+                    </tr>
+                  </thead>
+
 <?php 
 
 include_once('lib/header.php'); 
@@ -36,17 +50,7 @@ if ($staff_designation == 'Medical Team (MT)') {
 
 ?>
 
-<thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Gender</th>
-                      <th>Designation</th>
-                      <th>Department</th>
-                      <th>Date Joined</th>
-                      <th>Last Login</th>
-                    </tr>
-                  </thead>
+
                   <tbody>
                     <tr>
                       <td><?php echo $staff_name;?></td>
