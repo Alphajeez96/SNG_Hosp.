@@ -28,7 +28,7 @@ $allAppointments = scandir("db/appointments/");
     $appointment_nature = $appointmentObject->appointment_nature;
     $appointment_department = $appointmentObject->apppointment_department;
     $complaint = $appointmentObject->initial_complaint;
-    }
+  
 
     // $UserPath = "db/users/".$currentAppointment;
 		// 			$userlogin = json_decode(file_get_contents($UserPath));
@@ -225,5 +225,5 @@ $allAppointments = scandir("db/appointments/");
                     </tr>
                   
                    
- <?php }
+ <?php }   }
  ?>  
