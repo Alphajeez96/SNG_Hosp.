@@ -41,6 +41,7 @@ if($errorCount > 0){
 
             $user_role = $userObject->designation;
             $user_department = $userObject->department;
+            $user_email= $userObject->department;
 
             
             if($passwordFromDB == $passwordFromUser) 
@@ -59,7 +60,7 @@ if($errorCount > 0){
                 die();
                 }
 
-                if($user_role == 'admin' && $user_department == 'admin') {
+                if($user_role == 'Admin') {
                    
                 $_SESSION['loggedIn'] = $userObject->id; 
                 $_SESSION['email'] = $userObject->email;

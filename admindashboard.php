@@ -30,27 +30,27 @@ if(!isset($_SESSION['loggedIn'])){
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="admindashboard.php">
+        <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-    
-<li class="nav-item">
-  <a class="nav-link" href="allstaff.php">
-  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-    <span> Staff</span></a>
-</li>
-<hr class="sidebar-divider">
-    
-<li class="nav-item">
-  <a class="nav-link" href="allpatients.php">
-  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-    <span> Patients</span></a>
-</li>
-<hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="allstaff.php">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Staff</span></a>
+      </li>
+      <hr class="sidebar-divider">
+
+      <li class="nav-item">
+        <a class="nav-link" href="allpatients.php">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Patient</span></a>
+      </li>
+      <hr class="sidebar-divider">
 
       <li class="nav-item">
         <a class="nav-link" href="reset.php">
@@ -248,7 +248,7 @@ if(!isset($_SESSION['loggedIn'])){
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  
+
 
 </body>
 

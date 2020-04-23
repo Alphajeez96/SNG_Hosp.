@@ -133,6 +133,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                         }                
                     ?>
                     >Medical Team (MT)</option>
+
                     <option 
                     <?php              
                         if(isset($_SESSION['designation']) && $_SESSION['designation'] == 'Patient'){
@@ -140,6 +141,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                         }                
                     ?>
                     >Patient</option>
+                    
                 </select>
                 <span class="error_form" id="designation_error_message"></span>
             </p>
