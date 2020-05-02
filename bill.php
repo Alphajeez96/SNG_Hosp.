@@ -32,7 +32,7 @@ if(!isset($_SESSION['loggedIn'])){
      
 
       <form method="POST" id="registration_form">
-      <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+      <script type="text/javascript" src="https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
 
       <p>
             <?php print_alerts(); ?>
@@ -55,6 +55,11 @@ if(!isset($_SESSION['loggedIn'])){
           />  
           <span class="error_form" id="email_error_message"></span>     
         </div>
+            
+            <p>
+            <label for="phone">Enter your phone number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+            </p>
 
         <p> <label for='currency'> Currency </label></p> 
            <input
@@ -70,10 +75,10 @@ if(!isset($_SESSION['loggedIn'])){
            <p> <label for='amount'> Amount </label></p> 
            <input
             id='amount'
-             type="number"
+             type="text"
              name="amount"
-             readonly
-             Value="5000"   
+             value = '5000'
+               
            />
            <span class="error_form" id="password_error_message"></span>
            <p>      
@@ -89,24 +94,25 @@ if(!isset($_SESSION['loggedIn'])){
     </form>       
 
 </div>
-</div> 
-
+</div>
 
 <script>
-    const API_publicKey = "FLWPUBK-81b601672f21272ae0411bd92693b361-X";
+    const API_publicKey = "FLWPUBK_TEST-19e70c02ed55da731bc7f01a518544b1-X";
     let email = document.getElementById('email').value;
     let amount = document.getElementById('amount').value;
-    let new_txref =
+    let phone_number = document.getElementById('phone').value;
+    let new_txref =  'SNH-' + Math.random().toString(36).substring(7) ;
+// console.log("random", new_txref);
 
     function payWithRave() {
         var x = getpaidSetup({
             PBFPubKey: API_publicKey,
             customer_email: email,
-            amount: amount,
-            payment_options: "card,account",
-            customer_phone: "234099940409",
+            amount:amount,
+            payment_options: "card, account",
+            customer_phone: phone_number,
             currency: "NGN",
-            txref: "rave-123456",
+            txref: new_txref,
             meta: [{
                 metaname: "flightID",
                 metavalue: "AP1234"
@@ -119,8 +125,9 @@ if(!isset($_SESSION['loggedIn'])){
                     response.tx.chargeResponseCode == "00" ||
                     response.tx.chargeResponseCode == "0"
                 ) {
+                    // swal("Success", "Payment Made Successfully", "success")  
+                   window.location = 'http://localhost/SNH_P/paymentverification.php';
                     // redirect to a success page
-                    swal()
                 } else {
                     // redirect to a failure page.
                 }
