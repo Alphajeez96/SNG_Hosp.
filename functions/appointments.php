@@ -22,3 +22,16 @@ function find_appointment($appointment_email = ""){
 
 
 }
+
+function generate_txref(){
+    $new_txref = '';
+
+    $values ='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    for($i = 0 ; $i < 15 ; $i++){
+
+        $index = mt_rand(0,count($values)-1);
+        $new_txref .= 'SNH' . $values[$index];
+      }
+      return $new_txref;
+}

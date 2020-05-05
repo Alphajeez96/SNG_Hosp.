@@ -7,6 +7,7 @@ session_start();
         $ref = $_GET['txref'];
         $amount = $_SESSION['amount']; //Correct Amount from Server
         $currency = $_SESSION['currency']; //Correct Currency from Server
+        $email = $_SESSION['email'];
 
         $query = array(
             "SECKEY" => "FLWSECK_TEST-43abf01461c294b0b671ca9afee26a7c-X",
@@ -40,7 +41,7 @@ session_start();
         if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
          
         //  echo 'this should be right';
-        
+        file_put_contents("db/transactions/". $_SESSION['email'] . ".json", json_encode($ref));
          header('Location: dashboard.php');
             // transaction was successful...
              // please check other things like whether you already gave value for this ref

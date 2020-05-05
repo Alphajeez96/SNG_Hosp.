@@ -17,8 +17,9 @@ $_SESSION['email'] = $email;
 $_SESSION['amount'] = $amount;
 $_SESSION['currency'] = $currency;
 
-$new_txref = generate_token(); // write function to generat random transaction reference
+$new_txref = generate_txref(); // write function to generate random transaction reference
 print_r($new_txref);
+die();
 
 
 $curl = curl_init();

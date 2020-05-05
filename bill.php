@@ -101,7 +101,7 @@ if(!isset($_SESSION['loggedIn'])){
     let email = document.getElementById('email').value;
     let amount = document.getElementById('amount').value;
     let phone_number = document.getElementById('phone').value;
-    let new_txref =  'SNH-' + Math.random().toString(36).substring(7) ;
+    let new_txref =   + Math.random().toString(36).substring(7) ;
 // console.log("random", new_txref);
 
     function payWithRave() {

@@ -10,7 +10,7 @@ if(!isset($_SESSION['loggedIn'])){
 }
 ?>
 
-<form action = 'processbill.php' method='POST'>
+<form action = 'processpayment.php' method='POST'>
     <p>
     <label for ='email'>Email</label>  
       <input id='email' type='email' name='email'>
