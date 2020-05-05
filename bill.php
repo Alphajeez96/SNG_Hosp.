@@ -112,23 +112,28 @@ if(!isset($_SESSION['loggedIn'])){
             payment_options: "card, account",
             customer_phone: phone_number,
             currency: "NGN",
+            redirect_url: "",
             txref: new_txref,
             meta: [{
                 metaname: "flightID",
                 metavalue: "AP1234"
             }],
-            onclose: function() {},
+            onclose: function() {
+                window.location = 'http://localhost/SNH_P/dashboard.php';
+            },
             callback: function(response) {
                 var txref = response.tx.txRef; // collect txRef returned and pass to a                  server page to complete status check.
                 console.log("This is the response returned after a charge", response);
+                throw new Error("error");
+                
                 if (
                     response.tx.chargeResponseCode == "00" ||
                     response.tx.chargeResponseCode == "0"
                 ) {
                     // swal("Success", "Payment Made Successfully", "success")  
-                   window.location = 'http://localhost/SNH_P/paymentverification.php';
+                    // window.location= 'http://localhost/SNH_P/paymentverification.php';
                     // redirect to a success page
-                } else {
+                } else { 
                     // redirect to a failure page.
                 }
 

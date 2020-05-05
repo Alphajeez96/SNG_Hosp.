@@ -174,7 +174,8 @@ if(!isset($_SESSION['loggedIn'])){
     <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
     <button type="button" onClick="payWithRave()">Pay Now</button>
 </form> -->
-  <a href="bill.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-yen-sign fa-sm text-white-50"></i> Pay Bill</a>
+  <!-- <a href="bill.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-yen-sign fa-sm text-white-50"></i> Pay Bill</a> -->
+  <a href="payment.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-yen-sign fa-sm text-white-50"></i> Pay Bill</a>
   </div>
 
   

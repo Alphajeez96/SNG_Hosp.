@@ -1,17 +1,21 @@
 <?php
+session_start();
+// echo 'i got here'
+
+
     if (isset($_GET['txref'])) {
         $ref = $_GET['txref'];
-        $amount = ""; //Correct Amount from Server
-        $currency = ""; //Correct Currency from Server
+        $amount = $_SESSION['amount']; //Correct Amount from Server
+        $currency = $_SESSION['currency']; //Correct Currency from Server
 
         $query = array(
-            "SECKEY" => "Your Secret Key",
+            "SECKEY" => "FLWSECK_TEST-43abf01461c294b0b671ca9afee26a7c-X",
             "txref" => $ref
         );
 
         $data_string = json_encode($query);
                 
-        $ch = curl_init('https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify ');                                                                      
+        $ch = curl_init('https://api.ravepay.co/flwv3-pug/getpaidx/api/v2/verify');                                                                      
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                              
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -34,11 +38,24 @@
         $chargeCurrency = $resp['data']['currency'];
 
         if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
+         
+        //  echo 'this should be right';
+        
+         header('Location: dashboard.php');
+            // transaction was successful...
+             // please check other things like whether you already gave value for this ref
+          // if the email matches the customer who owns the product etc
           //Give Value and return to Success page
-          header('Location: dashboard.php');
         } else {
+            // echo 'this is wrong';
+            swal("Oops", "Payment not Successful", "error");
+            header('Location: payment.php');
             //Dont Give Value and return to Failure page
         }
     }
+        else {
+      die('No reference supplied');
+    }
+
 
 ?>
