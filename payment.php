@@ -2,22 +2,21 @@
 include_once('lib/test.php');
 require_once('functions/alert.php');
 require_once('functions/user.php');
+require_once('functions/appointments.php');
 
 if(!isset($_SESSION['loggedIn'])){
     header("Location: login.php"); 
 }
+
 ?>
 
 <div class='body'>
-
-
 <div class="signup-wrapper">
       <div class="img">
-      <a href='index.php'>  <img class="imgs" src="./img/logo.png"> </a>
+      <a href='dashboard.php'>  <img class="imgs" src="./img/logo.png"> </a>
       </div>   
 
       <form action = 'processpayment.php' method='POST'>
-     
 
       <p>
             <?php print_alerts(); ?>
@@ -40,8 +39,7 @@ if(!isset($_SESSION['loggedIn'])){
             required  
           />   
         </div>
-    
- 
+
     <p>
     <label for='amount'>Amount</label>
     <input id='amount' required type ='number' name='amount'>
@@ -52,25 +50,11 @@ if(!isset($_SESSION['loggedIn'])){
     <input id='currency' type ='text' readonly value='NGN' name='currency'>
     </p>  
 
-    <p>
-      <select>
-        <option 
-        <?php 
-         list_all_appointments();
-
-        ?>
-        >
-
-        </option>
-      </select>
-    </p>                
     <button class='buttons' type='submit'>Pay</button>
-        
+
             </div>
-        </div>
-     
+        </div>  
     </div>
     </form>       
-
 </div>
 </div>

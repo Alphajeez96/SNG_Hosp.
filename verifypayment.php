@@ -36,10 +36,24 @@ session_start();
         $chargeAmount = $resp['data']['amount'];
         $chargeCurrency = $resp['data']['currency'];
 
+       $new_email = $_SESSION['email'] ;    
         if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
-        file_put_contents("db/transactions/". $_SESSION['email'] . ".json", json_encode($resp));
+            
+            $file1= ("db/appointments/$new_email" .'.json');
+            $current = file_get_contents($file1);
+            $current_decode=json_decode($current);
+
+            $merged = (object) array_merge_recursive((array) $current_decode, (array) $resp); //cast the objects to arrays, merge the arrays, then case resulting array back to a stdClass object.
+            $merged_encode =json_encode($merged);
+
+            // print_r($merged_encode);
+            // die();
+
+
+            // file_get_contents("db/appointments/$new_email" .'.json');
+            file_put_contents($file1,$merged_encode);
+
          header('Location: dashboard.php');
-           
         } else {
             header('Location: payment.php');
             

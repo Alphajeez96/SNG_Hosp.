@@ -176,6 +176,7 @@
                       <th>Date</th>
                       <th>Type</th>
                       <th>Department</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
 
@@ -210,11 +211,11 @@ $allAppointments = scandir("db/appointments/");
     $appointment_nature = $appointmentObject->appointment_nature;
     $appointment_department = $appointmentObject->apppointment_department;
     $complaint = $appointmentObject->initial_complaint;
-  
+    $payment_status = $appointmentObject->status;
+    
+    
 
-    // $UserPath = "db/users/".$currentAppointment;
-		// 			$userlogin = json_decode(file_get_contents($UserPath));
-		// 			$patient_name = $userlogin->first_name." ".$userlogin->last_name;
+
 					if(($appointment_department) == 'Laboratory' && ($_SESSION['department']) == 'Laboratory'){
 ?>
                             <tbody>
@@ -226,6 +227,9 @@ $allAppointments = scandir("db/appointments/");
                       <td><?php echo $appointment_date;?></td>
                       <td><?php echo $appointment_nature;?></td>
                       <td><?php echo $appointment_department;?></td>
+                      <td><?php if($payment_status=='success'){echo 'Paid';} else{echo 'Not Paid';} ?></td>
+                 
+                      
                     </tr>
                    
  <?php } }
