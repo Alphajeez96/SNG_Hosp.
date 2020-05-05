@@ -1,30 +1,76 @@
 <?php 
-include_once('lib/header.php'); 
-include_once('lib/billcss.php');
-// include_once('lib/test.php');
+include_once('lib/test.php');
 require_once('functions/alert.php');
+require_once('functions/user.php');
 
 if(!isset($_SESSION['loggedIn'])){
-    // redirect to login
-    // header("Location: login.php"); 
+    header("Location: login.php"); 
 }
 ?>
 
-<form action = 'processpayment.php' method='POST'>
-    <p>
-    <label for ='email'>Email</label>  
-      <input id='email' type='email' name='email'>
-    </p>
+<div class='body'>
 
+
+<div class="signup-wrapper">
+      <div class="img">
+      <a href='index.php'>  <img class="imgs" src="./img/logo.png"> </a>
+      </div>   
+
+      <form action = 'processpayment.php' method='POST'>
+     
+
+      <p>
+            <?php print_alerts(); ?>
+        </p>
+
+        <div class="login-containe" id="del">
+        <div class="for-group">
+           <p><label for ='email'>Email</label></p>
+          <input
+          <?php              
+                    if(isset($_SESSION['email'])){
+                        echo "value=" . $_SESSION['email'];                                                             
+                    }                
+                ?>
+            type="email"
+            name="email"
+            placeholder="Email"
+            title=""
+            id="email"   
+            required  
+          />   
+        </div>
+    
+ 
     <p>
     <label for='amount'>Amount</label>
-    <input id='amount' type ='number' name='amount'>
-    </p>
+    <input id='amount' required type ='number' name='amount'>
+    </p>  
 
     <p>
     <label for='currency'>Currency</label>
     <input id='currency' type ='text' readonly value='NGN' name='currency'>
-    </p>
+    </p>  
 
-    <button type='submit'>Pay</button>
-</form>
+    <p>
+      <select>
+        <option 
+        <?php 
+         list_all_appointments();
+
+        ?>
+        >
+
+        </option>
+      </select>
+    </p>                
+    <button class='buttons' type='submit'>Pay</button>
+        
+            </div>
+        </div>
+     
+    </div>
+    </form>       
+
+</div>
+</div>

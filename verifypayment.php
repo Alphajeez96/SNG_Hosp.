@@ -1,7 +1,5 @@
 <?php
 session_start();
-// echo 'i got here'
-
 
     if (isset($_GET['txref'])) {
         $ref = $_GET['txref'];
@@ -39,19 +37,12 @@ session_start();
         $chargeCurrency = $resp['data']['currency'];
 
         if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
-         
-        //  echo 'this should be right';
-        file_put_contents("db/transactions/". $_SESSION['email'] . ".json", json_encode($ref));
+        file_put_contents("db/transactions/". $_SESSION['email'] . ".json", json_encode($resp));
          header('Location: dashboard.php');
-            // transaction was successful...
-             // please check other things like whether you already gave value for this ref
-          // if the email matches the customer who owns the product etc
-          //Give Value and return to Success page
+           
         } else {
-            // echo 'this is wrong';
-            swal("Oops", "Payment not Successful", "error");
             header('Location: payment.php');
-            //Dont Give Value and return to Failure page
+            
         }
     }
         else {

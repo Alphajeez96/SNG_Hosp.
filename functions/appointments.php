@@ -24,14 +24,16 @@ function find_appointment($appointment_email = ""){
 }
 
 function generate_txref(){
-    $new_txref = '';
+    $new_txref = 'SNH-';
 
-    $values ='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $values =['0','1','2', '3','4','5','6','7','8','9','a','b','d','e','f','g','h' ,'i','j','k','l','m',"n",
+            'A','B','C', 'D','E','E', 'F','G','H', 'I','J', 'K','L','M', 'N','O',
+            'P','Q','R', 'S','T','U','V','W', 'o','p','.', 'q','r','s', 't',];
 
-    for($i = 0 ; $i < 15 ; $i++){
+    for($i = 0 ; $i < 12 ; $i++){
 
         $index = mt_rand(0,count($values)-1);
-        $new_txref .= 'SNH' . $values[$index];
+        $new_txref .=  $values[$index];
       }
       return $new_txref;
 }

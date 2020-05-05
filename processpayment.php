@@ -2,7 +2,7 @@
 
 require_once('functions/alert.php');
 require_once('functions/redirect.php');
-require_once('functions/token.php');
+require_once('functions/appointments.php');
 require_once('functions/user.php');
 
 
@@ -11,15 +11,15 @@ require_once('functions/user.php');
 $email = $_POST['email'] != "" ? $_POST['email'] :  $errorCount++;
 $amount = $_POST['amount'] != "" ? $_POST['amount'] :  $errorCount++;
 $currency = $_POST['currency'] != "" ? $_POST['currency'] :  $errorCount++;
-print_r($_POST);
+// print_r($_POST);
 
 $_SESSION['email'] = $email;
 $_SESSION['amount'] = $amount;
 $_SESSION['currency'] = $currency;
 
 $new_txref = generate_txref(); // write function to generate random transaction reference
-print_r($new_txref);
-die();
+// print_r($new_txref);
+
 
 
 $curl = curl_init();
